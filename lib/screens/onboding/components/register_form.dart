@@ -242,9 +242,9 @@ class _RegisterFormState extends State<RegisterForm> {
           const Duration(seconds: 2),
           () {
             setState(() {
+              confetti.fire();
               isShowLoading = false;
             });
-            confetti.fire();
           },
         );
         Future.delayed(

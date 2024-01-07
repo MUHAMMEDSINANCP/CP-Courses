@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      home: StreamBuilder<User?>(
+       home: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData && snapshot.data != null) {

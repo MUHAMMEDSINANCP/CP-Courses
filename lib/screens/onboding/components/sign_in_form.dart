@@ -204,9 +204,9 @@ class _SignInFormState extends State<SignInForm> {
           const Duration(seconds: 2),
           () {
             setState(() {
+              confetti.fire();
               isShowLoading = false;
             });
-            confetti.fire();
           },
         );
         Future.delayed(
