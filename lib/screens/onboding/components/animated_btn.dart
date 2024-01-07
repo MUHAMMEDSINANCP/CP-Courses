@@ -26,18 +26,16 @@ class AnimatedBtn extends StatelessWidget {
               "assets/RiveAssets/button.riv",
               controllers: [_btnAnimationController],
             ),
-            Positioned.fill(
+            const Positioned.fill(
               top: 8,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(CupertinoIcons.arrow_right),
-                  const SizedBox(width: 8),
-                  Text(
-                    "Start the course",
-                    style: Theme.of(context).textTheme.labelLarge,
-                  )
+                  Icon(CupertinoIcons.arrow_right),
+                  SizedBox(width: 8),
+                  Text(" Start the course",
+                      style: TextStyle(fontWeight: FontWeight.w600))
                 ],
               ),
             )

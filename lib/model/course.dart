@@ -47,12 +47,15 @@ final List<Course> recentCourses = [
   Course(
     description: "",
     title: "Flutter Development",
-    color: const Color(0xFF9CC5FF),
     iconSrc: "assets/icons/code.svg",
   ),
   Course(
       title: "Machine Learning Basics",
+      color: const Color(0xFF9CC5FF),
       description:
           "Explore the fundamentals of Machine Learning, diving into algorithms and their real-world applications."),
-  Course(title: "React Development", description: ""),
+  Course(
+    title: "React Development",
+    description: "",
+  ),
 ];
