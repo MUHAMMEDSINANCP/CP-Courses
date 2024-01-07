@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "581500965224",
+    "project_id": "cp-courses-23c42",
+    "storage_bucket": "cp-courses-23c42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581500965224:android:6f4e6a7db1e5bafc2586dd",
+        "android_client_info": {
+          "package_name": "com.example.cp_courses"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRgH2qwF8l3ix_USuJRyhxQTQQNCuq0jk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
