@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 import 'components/animated_btn.dart';
-import 'components/sign_in_dialog.dart';
+import 'components/custom_dialog.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});

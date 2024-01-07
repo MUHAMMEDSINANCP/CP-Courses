@@ -72,6 +72,7 @@ class _SignInFormState extends State<SignInForm> {
                     }
                     return null;
                   },
+                  
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
