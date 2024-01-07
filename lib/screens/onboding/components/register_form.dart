@@ -19,6 +19,7 @@ class _RegisterFormState extends State<RegisterForm> {
   TextEditingController txtNameController = TextEditingController();
   TextEditingController txtEmailController = TextEditingController();
   TextEditingController txtPasswordController = TextEditingController();
+  bool isObscurePassword = true;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isShowLoading = false;
@@ -65,6 +66,7 @@ class _RegisterFormState extends State<RegisterForm> {
               Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
+                  cursorColor: const Color(0xFFF77D8E).withOpacity(0.5),
                   controller: txtNameController,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -95,6 +97,7 @@ class _RegisterFormState extends State<RegisterForm> {
               Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
+                  cursorColor: const Color(0xFFF77D8E).withOpacity(0.5),
                   controller: txtEmailController,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -121,8 +124,9 @@ class _RegisterFormState extends State<RegisterForm> {
               Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
+                  cursorColor: const Color(0xFFF77D8E).withOpacity(0.5),
                   controller: txtPasswordController,
-                  obscureText: true,
+                  obscureText: isObscurePassword,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Please enter your password.";
@@ -130,6 +134,21 @@ class _RegisterFormState extends State<RegisterForm> {
                     return null;
                   },
                   decoration: InputDecoration(
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isObscurePassword = !isObscurePassword;
+                        });
+                      },
+                      child: Icon(
+                        !isObscurePassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: !isObscurePassword
+                            ? const Color(0xFFF77D8E).withOpacity(0.5)
+                            : Colors.grey,
+                      ),
+                    ),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: SvgPicture.asset("assets/icons/password.svg"),
@@ -226,15 +245,17 @@ class _RegisterFormState extends State<RegisterForm> {
               isShowLoading = false;
             });
             confetti.fire();
-            // Navigate & hide confetti
-            Future.delayed(const Duration(seconds: 1), () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const EntryPoint(),
-                ),
-              );
-            });
+          },
+        );
+        Future.delayed(
+          const Duration(seconds: 3),
+          () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const EntryPoint(),
+              ),
+            );
           },
         );
       }

@@ -19,6 +19,7 @@ class SignInForm extends StatefulWidget {
 class _SignInFormState extends State<SignInForm> {
   TextEditingController txtEmailController = TextEditingController();
   TextEditingController txtPasswordController = TextEditingController();
+  bool isObscurePassword = true;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isShowLoading = false;
@@ -65,6 +66,7 @@ class _SignInFormState extends State<SignInForm> {
               Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
+                  cursorColor: const Color(0xFFF77D8E).withOpacity(0.5),
                   controller: txtEmailController,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -72,7 +74,6 @@ class _SignInFormState extends State<SignInForm> {
                     }
                     return null;
                   },
-                  
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
@@ -92,8 +93,9 @@ class _SignInFormState extends State<SignInForm> {
               Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
+                  cursorColor: const Color(0xFFF77D8E).withOpacity(0.5),
                   controller: txtPasswordController,
-                  obscureText: true,
+                  obscureText: isObscurePassword,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Please enter your password.";
@@ -101,6 +103,21 @@ class _SignInFormState extends State<SignInForm> {
                     return null;
                   },
                   decoration: InputDecoration(
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isObscurePassword = !isObscurePassword;
+                        });
+                      },
+                      child: Icon(
+                        !isObscurePassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: !isObscurePassword
+                            ? const Color(0xFFF77D8E).withOpacity(0.5)
+                            : Colors.grey,
+                      ),
+                    ),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: SvgPicture.asset("assets/icons/password.svg"),
@@ -179,28 +196,28 @@ class _SignInFormState extends State<SignInForm> {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: txtEmailController.text.trim(),
           password: txtPasswordController.text.trim(),
-
         );
-              print('Login successful!');
-
+        print('Login successful!');
 
         success.fire();
         Future.delayed(
-          const Duration(seconds: 6),
+          const Duration(seconds: 2),
           () {
             setState(() {
               isShowLoading = false;
             });
             confetti.fire();
-            // Navigate & hide confetti
-            Future.delayed(const Duration(seconds: 1), () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const EntryPoint(),
-                ),
-              );
-            });
+          },
+        );
+        Future.delayed(
+          const Duration(seconds: 3),
+          () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const EntryPoint(),
+              ),
+            );
           },
         );
       }
@@ -239,8 +256,7 @@ class _SignInFormState extends State<SignInForm> {
         isShowLoading = false;
       });
       reset.fire();
-          print('Firebase Error: ${e.code} - ${e.message}');
-
+      print('Firebase Error: ${e.code} - ${e.message}');
     } finally {
       // Validate form and handle loading state
       if (!_formKey.currentState!.validate()) {
