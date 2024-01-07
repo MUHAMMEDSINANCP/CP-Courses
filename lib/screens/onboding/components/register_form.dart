@@ -76,11 +76,12 @@ class _RegisterFormState extends State<RegisterForm> {
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     prefixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: SvgPicture.asset(
-                        "assets/icons/ios.svg",
-                        height: 10,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: SvgPicture.asset("assets/icons/ios.svg",
+                          height: 10,
+                          colorFilter: ColorFilter.mode(
+                              const Color(0xFFF77D8E).withOpacity(0.5),
+                              BlendMode.srcIn)),
                     ),
                   ),
                 ),
